@@ -10,11 +10,18 @@ public class AdmobController : MonoBehaviour
     private InterstitialAd intersitional;
     private BannerView banner;
 
+#if UNITY_IOS
+    private string appId="ca-app-pub-4962234576866611~7843798981";
+    private string intersitionalId="ca-app-pub-4962234576866611/5536651106";
+
+    private string bannerId="ca-app-pub-4962234576866611/7041304467";
+#else
     private string appId="ca-app-pub-4962234576866611~1844373326";
     private string intersitionalId="ca-app-pub-4962234576866611/8026638299";
 
     private string bannerId="ca-app-pub-4962234576866611/6492429263";
-    
+#endif
+
     void Start(){
         RequestConfiguration requestConfiguration =
             new RequestConfiguration.Builder()

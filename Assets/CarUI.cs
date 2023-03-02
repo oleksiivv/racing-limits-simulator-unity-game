@@ -10,7 +10,12 @@ public class CarUI : MonoBehaviour
     public GameObject pausePanel;
     public GameObject deathPanel;
 
+#if UNITY_IOS
+    private string gameID="4221692";
+#else
     private string gameID="4221693";
+#endif
+
     public AdmobController admob;
 
     void Start(){
