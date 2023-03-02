@@ -9,7 +9,7 @@ public class CarScore : MonoBehaviour
     public Text hi;
     public Text newHiLabel;
 
-    private float scoreVal;
+    private float scoreVal, distToShow;
     private bool hiLabelShowed;
 
 
@@ -36,9 +36,21 @@ public class CarScore : MonoBehaviour
 
         }
 
-        if(Time.timeScale!=0)scoreVal+=1*CarMove.speed/300;
+        if(Time.timeScale!=0){
+            scoreVal+=1*CarMove.speed;
+            if(scoreVal>1000){
+                distToShow = scoreVal / 1000f;
 
-        score.text=((int)scoreVal).ToString();
+                distToShow = (float)Mathf.Round(distToShow * 10f) / 10f;
+
+                score.text = distToShow.ToString()+"km";
+            }
+            else{
+                score.text = ((int)scoreVal).ToString()+"m";
+            }
+        }
+
+        //score.text=((int)scoreVal).ToString();
     }
 
 

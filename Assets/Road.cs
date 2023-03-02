@@ -18,7 +18,7 @@ public class Road : MonoBehaviour
     }
 
     void cleanAllChilds(){
-        for(int i=2;i<transform.childCount;i++){
+        for(int i=3;i<transform.childCount;i++){
             Destroy(transform.GetChild(i).gameObject);
         }
     }

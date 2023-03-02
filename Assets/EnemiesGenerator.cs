@@ -20,20 +20,22 @@ public class EnemiesGenerator : MonoBehaviour
     }
 
     void Update(){
-        
+        Debug.Log("Delay: "+delayF.ToString());
     }
 
 
 
     IEnumerator instForwardEnemies(){
         while(CarMove.speed!=0){
+            if(delayF>1)delayF*=0.99f;
+
             int n=Random.Range(0,enemiesForward.Length);
 
-            Instantiate(enemiesForward[n],enemiesForward[n].transform.position,enemiesForward[n].transform.rotation);
+            for(int i=0; i<Random.Range(1, delayF>2 ? 3 : 4); i++)Instantiate(enemiesForward[n],enemiesForward[n].transform.position,enemiesForward[n].transform.rotation);
 
             yield return new WaitForSeconds(Random.Range(delayF*0.5f,delayF));
 
-            if(delayF>2)delayF*=0.9995f;
+            
         }
     }
 
@@ -43,8 +45,8 @@ public class EnemiesGenerator : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(delayB*0.8f,delayB*1.2f));
 
             int n=Random.Range(0,enemiesBack.Length);
-            Instantiate(enemiesBack[n],enemiesBack[n].transform.position,enemiesBack[n].transform.rotation);
-            if(delayB>2)delayB*=0.9995f;
+            for(int i=0; i<Random.Range(1, delayB>2 ? 3 : 4); i++)Instantiate(enemiesBack[n],enemiesBack[n].transform.position,enemiesBack[n].transform.rotation);
+            if(delayB>1)delayB*=0.99f;
         }
     }
 }

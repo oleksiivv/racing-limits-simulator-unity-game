@@ -6,7 +6,7 @@ public class DecorGenerator : MonoBehaviour
 {
     public GameObject[] decor;
 
-    float delay=3f;
+    float delay=2f;
     void Start(){
         StartCoroutine(instDecor());
     }
@@ -25,7 +25,7 @@ public class DecorGenerator : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(delay*0.5f,delay));
 
-            if(delay>2)delay*=0.9995f;
+            if(delay>1)delay*=0.9995f;
         }
     }
 

@@ -7,9 +7,9 @@ public class CarForward : CarEnemy
     // Start is called before the first frame update
     public override void init()
     {
-        transform.position=new Vector3(Random.Range(-0.5f,0f),transform.position.y,transform.position.z);
+        transform.position=new Vector3(Random.Range(-1.25f,1.25f),transform.position.y,transform.position.z);
 
-        speed=Random.Range(0.6f,0.8f);
+        speed=Random.Range(0.8f,1.4f);
     }
 
     

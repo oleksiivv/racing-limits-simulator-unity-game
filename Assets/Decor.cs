@@ -4,22 +4,34 @@ using UnityEngine;
 
 public class Decor : MonoBehaviour
 {
+    private Rigidbody rigidbody;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position=new Vector3(Random.Range(-0.5f,0.5f),transform.position.y,-7);
+        rigidbody = gameObject.GetComponent<Rigidbody>();
+        transform.position=new Vector3(Random.Range(-1.25f,1.25f),transform.position.y,-7);
     }
 
     void Update(){
+        //rigidbody.velocity = -Vector3.forward*0.5f*CarMove.speed*Time.timeScale*PlayerPrefs.GetFloat("quality",2.5f);
         transform.position=Vector3.MoveTowards(transform.position,new Vector3(transform.position.x,transform.position.y,-14),0.01f*CarMove.speed*Time.timeScale*PlayerPrefs.GetFloat("quality",2.5f));
     }
 
-     void OnTriggerEnter(Collider other){
-         if(other.gameObject.tag=="Player"){
+    bool wasAtRoad = false;
+
+     void OnCollisionEnter(Collision other){
+         if(other.gameObject.tag != "Ground"){
+             transform.parent = null;
              //other.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up*100);
-             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.up*250);
-             gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back*50);
+             rigidbody.AddForce(Vector3.up*550);
+             rigidbody.AddForce(Vector3.back*130);
              
+             Debug.Log("Decor Collision");
+         }
+         else if(!wasAtRoad){
+             wasAtRoad=true;
+             //transform.parent = other.gameObject.transform;
          }
      }
 }

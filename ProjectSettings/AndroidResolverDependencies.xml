@@ -1,11 +1,13 @@
 <dependencies>
   <packages>
-    <package>com.google.android.gms:play-services-ads:19.5.0</package>
+    <package>androidx.lifecycle:lifecycle-common-java8:2.4.1</package>
+    <package>androidx.lifecycle:lifecycle-process:2.4.1</package>
+    <package>com.google.android.gms:play-services-ads:21.0.0</package>
   </packages>
   <files />
   <settings>
     <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
-    <setting name="bundleId" value="com.EasyStreet.Traffic" />
+    <setting name="bundleId" value="com.EasyStreet.TrafficLowPolyRacing" />
     <setting name="explodeAars" value="True" />
     <setting name="gradleBuildEnabled" value="True" />
     <setting name="gradlePropertiesTemplateEnabled" value="False" />

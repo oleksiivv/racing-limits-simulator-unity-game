@@ -13,11 +13,11 @@ public class CarMove : MonoBehaviour
 
 
     public GameObject handler;
-    public static float speed=1;
+    public static float speed=1.3f;
 
     void Start(){
         acceleration=0;
-        speed=1;
+        speed=1.3f;
 
         
     }
@@ -42,7 +42,7 @@ public class CarMove : MonoBehaviour
         else speed+=0.00002f;
 
 
-        if((gameObject.transform.position.x<=0.5f && moveSlider.value >=0) || (gameObject.transform.position.x>=-0.5f && moveSlider.value <=0)){
+        if((gameObject.transform.position.x<=border.y && moveSlider.value >=0) || (gameObject.transform.position.x>=border.x && moveSlider.value <=0)){
             gameObject.transform.position+=new Vector3(moveSlider.value/2,0,0)*acceleration;
             transform.eulerAngles=new Vector3(0,moveSlider.value*60,0);
             handler.transform.eulerAngles=new Vector3(0,0,moveSlider.value*-1*60);
