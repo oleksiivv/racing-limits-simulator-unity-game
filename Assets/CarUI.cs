@@ -10,16 +10,23 @@ public class CarUI : MonoBehaviour
     public GameObject pausePanel;
     public GameObject deathPanel;
 
-#if UNITY_IOS
-    private string gameID="4221692";
-#else
-    private string gameID="4221693";
-#endif
+    public Text deathPanelResultQuests, deathPanelResultCoins;
+
+    // #if UNITY_IOS
+    //     private string gameID="4221692";
+    // #else
+    //     private string gameID="4221693";
+    // #endif
 
     public AdmobController admob;
 
+    public QuestsController quests;
+
     void Start(){
-        Advertisement.Initialize(gameID,false);
+        // Advertisement.Initialize(gameID, false);
+        
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
     }
     
 
@@ -27,9 +34,9 @@ public class CarUI : MonoBehaviour
         Time.timeScale=0;
         pausePanel.SetActive(true);
 
-        if (addCnt%2==1 && Advertisement.IsReady()) {
-                Advertisement.Show("Interstitial_Android");
-        }
+        // if (addCnt%2==1 && Advertisement.IsReady()) {
+        //         Advertisement.Show("Interstitial_Android");
+        // }
 
         addCnt++;
   
@@ -53,14 +60,17 @@ public class CarUI : MonoBehaviour
     public void showDeathPanel(){
         if(addCnt%2==1){
             if(!admob.showIntersitionalAd()){
-                if (Advertisement.IsReady()) {
-                    Advertisement.Show("Interstitial_Android");
-                }
+                // if (Advertisement.IsReady()) {
+                //     Advertisement.Show("Interstitial_Android");
+                // }
             }
         }
 
         addCnt++;
         deathPanel.SetActive(true);
+
+        deathPanelResultCoins.text = "Coins amount: " + PlayerPrefs.GetInt("coins").ToString();
+        deathPanelResultQuests.text = "Quests completed: " + PlayerPrefs.GetInt("current_quest_id", 0).ToString() + "/" + quests.totalQuestsAmount.ToString();
     }
 
     public GameObject loadingPanel;

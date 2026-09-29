@@ -9,7 +9,7 @@ public class CarBack : CarEnemy
     
         transform.position=new Vector3(Random.Range(-1.25f,1.25f),transform.position.y,transform.position.z);
 
-        speed=Random.Range(0.4f,0.9f);
+        speed=Random.Range(0.4f,0.9f)*1.2f;
     }
 
     // Update is called once per frame

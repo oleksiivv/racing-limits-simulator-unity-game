@@ -8,6 +8,13 @@ public class MenuController : MonoBehaviour
 
     public GameObject loadingPanel;
     public Slider loadingSlider;
+
+    void Start()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+    }
+    
     IEnumerator loadAsync(int id)
     {
         AsyncOperation operation = Application.LoadLevelAsync(id);

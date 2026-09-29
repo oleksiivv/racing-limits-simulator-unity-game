@@ -33,11 +33,11 @@ public class AdmobController : MonoBehaviour
             LoadLoadInterstitialAd();
             CreateBannerView();
 
-            if(Application.loadedLevel != 2){
-                LoadBannerAd();
-            }else{
-                DestroyBannerView();
-            }
+            // if(Application.loadedLevel != 2){
+            //     LoadBannerAd();
+            // }else{
+            //     DestroyBannerView();
+            // }
         });
     }
 

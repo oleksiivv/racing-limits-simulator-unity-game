@@ -6,19 +6,34 @@ public class Road : MonoBehaviour
 {
     public Vector3 instPos;
     public Vector3 startPos;
+    private float resetThreshold;
 
-    void Update(){
-        transform.position=Vector3.MoveTowards(transform.position,new Vector3(transform.position.x,transform.position.y,instPos.z-1),0.01f*CarMove.speed*Time.timeScale*PlayerPrefs.GetFloat("quality",2.5f));
-
-        if((int)instPos.z==(int)transform.position.z){
-            cleanAllChilds();
-            transform.position+=new Vector3(0,0,12);
-            //transform.position=new Vector3(transform.position.x,transform.position.y,startPos.z);
-        }
+    void Start()
+    {
+        // Calculate the exact reset point
+        resetThreshold = instPos.z - 1;
     }
 
-    void cleanAllChilds(){
-        for(int i=3;i<transform.childCount;i++){
+    void Update()
+    {
+        float moveSpeed = 0.01f * CarMove.speed * Time.timeScale * PlayerPrefs.GetFloat("quality", 2.5f);
+        moveSpeed = Mathf.Round(moveSpeed * 100f) / 100f;
+
+        // Check BEFORE moving
+        if (transform.position.z <= resetThreshold)
+        {
+            cleanAllChilds();
+            transform.position += new Vector3(0, 0, 12);
+        }
+
+        // Move after checking
+        transform.position += new Vector3(0, 0, -moveSpeed);
+    }
+
+    void cleanAllChilds()
+    {
+        for (int i = 3; i < transform.childCount; i++)
+        {
             Destroy(transform.GetChild(i).gameObject);
         }
     }

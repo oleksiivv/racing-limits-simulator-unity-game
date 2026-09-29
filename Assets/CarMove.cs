@@ -17,7 +17,7 @@ public class CarMove : MonoBehaviour
 
     void Start(){
         acceleration=0;
-        speed=1.3f;
+        speed=1.8f;
 
         
     }

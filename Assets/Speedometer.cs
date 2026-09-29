@@ -14,8 +14,18 @@ public class Speedometer : MonoBehaviour
     }
 
     void Update(){
-        arrow.transform.eulerAngles=new Vector3(0,0,(-CarMove.speed+5)*65-90);
-        speed.text=((int)((CarMove.speed-1)*70+20)).ToString();
+        arrow.transform.eulerAngles = new Vector3(0, 0, (-CarMove.speed + 5) * 65 - 90);
+
+        var speedval = (int)((CarMove.speed - 1) * 70 + 20);
+
+        speedval = speedval > 0 ? speedval : 0;
+
+        speed.text = speedval.ToString();
+        
+        if(speedval == 0)
+        {
+            arrow.transform.eulerAngles = new Vector3(0, 0, 193);
+        }
     }
 
     IEnumerator startGame(){

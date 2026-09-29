@@ -49,7 +49,7 @@ public class CarEnemy : MonoBehaviour
     }
     public void OnTriggerExit(Collider other){
         if(other.gameObject.tag=="Enemy"){
-            speed=1;
+            speed=1.2f;
 
             //Debug.Log("Collision");
         }
